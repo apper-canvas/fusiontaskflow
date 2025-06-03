@@ -5,8 +5,8 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 
 function App() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900">
+return (
+    <div className="min-h-screen bg-surface-50 dark:bg-app-bg-dark">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />

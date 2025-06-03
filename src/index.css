@@ -11,14 +11,28 @@
     display: none;
   }
   
-  .glass-morphism {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  .app-sidebar {
+    @apply bg-white dark:bg-sidebar border-r border-surface-200 dark:border-surface-700;
   }
   
-  .task-card-gradient {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+  .app-header {
+    @apply bg-white/95 dark:bg-sidebar/95 backdrop-blur-sm border-b border-surface-200 dark:border-surface-700;
+  }
+  
+  .app-main {
+    @apply bg-surface-50 dark:bg-app-bg-dark;
+  }
+  
+  .sidebar-item {
+    @apply flex items-center px-4 py-3 text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700 rounded-lg transition-colors duration-200;
+  }
+  
+  .sidebar-item.active {
+    @apply bg-primary text-white hover:bg-primary-dark;
+  }
+  
+  .task-card {
+    @apply bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700 rounded-xl shadow-soft hover:shadow-card transition-all duration-200;
   }
   
   .priority-urgent {

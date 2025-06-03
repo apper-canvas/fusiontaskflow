@@ -384,13 +384,13 @@ const MainFeature = ({ tasks, categories, onAddTask, onUpdateTask, onDeleteTask,
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className={`bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-card border transition-all duration-300 hover:shadow-lg group ${
+transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className={`task-card p-4 md:p-6 group ${
                       task.status === 'completed' 
                         ? 'border-secondary/30 bg-gradient-to-r from-secondary/5 to-emerald-50/50 dark:from-secondary/10 dark:to-slate-800/50' 
                         : isOverdue
                         ? 'border-red-300 bg-gradient-to-r from-red-50 to-pink-50/50 dark:from-red-900/20 dark:to-slate-800/50'
-                        : 'border-white/30 hover:border-primary/30'
+                        : 'hover:border-primary/30'
                     }`}
                   >
                     <div className="flex items-start space-x-4">

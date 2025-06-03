@@ -4,7 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: {
+theme: {
     extend: {
       colors: {
         primary: {
@@ -29,18 +29,34 @@ export default {
           700: '#334155',
           800: '#1e293b',
           900: '#0f172a'
+        },
+        sidebar: {
+          DEFAULT: '#1e293b',
+          light: '#334155',
+          dark: '#0f172a'
+        },
+        app: {
+          bg: '#f8fafc',
+          'bg-dark': '#0f172a'
         }
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui'],
         heading: ['Inter', 'ui-sans-serif', 'system-ui']
       },
+      spacing: {
+        'sidebar': '16rem',
+        'sidebar-collapsed': '4rem'
+      },
+      width: {
+        'sidebar': '16rem',
+        'sidebar-collapsed': '4rem'
+      },
       boxShadow: {
-        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+        'soft': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
         'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
-        'neu-light': '5px 5px 15px #d1d9e6, -5px -5px 15px #ffffff',
-        'neu-dark': '5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.05)',
-        'glow': '0 0 20px rgba(99, 102, 241, 0.3)'
+        'sidebar': '-4px 0 8px -2px rgba(0, 0, 0, 0.1)',
+        'header': '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
       },
       borderRadius: {
         'xl': '0.75rem',
@@ -48,18 +64,17 @@ export default {
         '3xl': '1.5rem'
       },
       animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'bounce-gentle': 'bounce-gentle 2s infinite'
+        'slide-in': 'slideIn 0.3s ease-out',
+        'fade-in': 'fadeIn 0.2s ease-out'
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' }
+        slideIn: {
+          '0%': { transform: 'translateX(-100%)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' }
         },
-        'bounce-gentle': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-5px)' }
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
         }
       }
     },

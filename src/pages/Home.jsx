@@ -103,163 +103,157 @@ const Home = () => {
     }
   }, [darkMode])
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-900 transition-all duration-500">
-      {/* Header */}
-      <header className="sticky top-0 z-50 glass-morphism border-b border-white/20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            <motion.div 
-              className="flex items-center space-x-3"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-lg">
-                <ApperIcon name="CheckSquare" className="w-4 h-4 md:w-5 md:h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                  TaskFlow
-                </h1>
-                <p className="text-xs text-surface-600 dark:text-surface-400 hidden sm:block">
-                  Smart Task Management
-                </p>
-              </div>
-            </motion.div>
-
-            <div className="flex items-center space-x-3 md:space-x-4">
-              {/* Stats Quick View */}
-              <div className="hidden md:flex items-center space-x-4 bg-white/50 dark:bg-slate-800/50 rounded-2xl px-4 py-2 backdrop-blur-sm">
-                <div className="text-center">
-                  <div className="text-lg font-bold text-primary">{stats.total}</div>
-                  <div className="text-xs text-surface-600 dark:text-surface-400">Total</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-lg font-bold text-secondary">{stats.completed}</div>
-                  <div className="text-xs text-surface-600 dark:text-surface-400">Done</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-lg font-bold text-orange-500">{stats.pending}</div>
-                  <div className="text-xs text-surface-600 dark:text-surface-400">Pending</div>
-                </div>
-              </div>
-
-              {/* Dark Mode Toggle */}
-              <motion.button
-                onClick={toggleDarkMode}
-                className="p-2 md:p-3 rounded-xl bg-white/50 dark:bg-slate-800/50 hover:bg-white/70 dark:hover:bg-slate-700/70 transition-all duration-300 backdrop-blur-sm group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <AnimatePresence mode="wait">
-                  {darkMode ? (
-                    <motion.div
-                      key="sun"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ApperIcon name="Sun" className="w-4 h-4 md:w-5 md:h-5 text-yellow-500 group-hover:text-yellow-400" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="moon"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ApperIcon name="Moon" className="w-4 h-4 md:w-5 md:h-5 text-slate-600 group-hover:text-slate-500" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.button>
+return (
+    <div className="min-h-screen bg-surface-50 dark:bg-app-bg-dark flex">
+      {/* Sidebar */}
+      <motion.aside 
+        className="app-sidebar w-sidebar flex-shrink-0 h-screen sticky top-0 overflow-y-auto"
+        initial={{ x: -256 }}
+        animate={{ x: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        {/* Logo */}
+        <div className="p-6 border-b border-surface-200 dark:border-surface-700">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary-dark rounded-lg flex items-center justify-center">
+              <ApperIcon name="CheckSquare" className="w-4 h-4 text-white" />
+            </div>
+            <div>
+              <h1 className="text-lg font-bold text-surface-900 dark:text-white">TaskFlow</h1>
+              <p className="text-xs text-surface-500 dark:text-surface-400">Task Management</p>
             </div>
           </div>
         </div>
-      </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
-        {/* Mobile Stats */}
-        <motion.div 
-          className="md:hidden grid grid-cols-4 gap-3 mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <div className="bg-white/70 dark:bg-slate-800/70 rounded-2xl p-3 text-center backdrop-blur-sm">
-            <div className="text-lg font-bold text-primary">{stats.total}</div>
-            <div className="text-xs text-surface-600 dark:text-surface-400">Total</div>
+        {/* Navigation */}
+        <nav className="p-4 space-y-2">
+          <div className="sidebar-item active">
+            <ApperIcon name="Home" className="w-5 h-5 mr-3" />
+            <span>Dashboard</span>
           </div>
-          <div className="bg-white/70 dark:bg-slate-800/70 rounded-2xl p-3 text-center backdrop-blur-sm">
-            <div className="text-lg font-bold text-secondary">{stats.completed}</div>
-            <div className="text-xs text-surface-600 dark:text-surface-400">Done</div>
+          <div className="sidebar-item">
+            <ApperIcon name="List" className="w-5 h-5 mr-3" />
+            <span>All Tasks</span>
           </div>
-          <div className="bg-white/70 dark:bg-slate-800/70 rounded-2xl p-3 text-center backdrop-blur-sm">
-            <div className="text-lg font-bold text-orange-500">{stats.pending}</div>
-            <div className="text-xs text-surface-600 dark:text-surface-400">Pending</div>
+          <div className="sidebar-item">
+            <ApperIcon name="Calendar" className="w-5 h-5 mr-3" />
+            <span>Today</span>
           </div>
-          <div className="bg-white/70 dark:bg-slate-800/70 rounded-2xl p-3 text-center backdrop-blur-sm">
-            <div className="text-lg font-bold text-red-500">{stats.overdue}</div>
-            <div className="text-xs text-surface-600 dark:text-surface-400">Overdue</div>
+          <div className="sidebar-item">
+            <ApperIcon name="CalendarDays" className="w-5 h-5 mr-3" />
+            <span>This Week</span>
           </div>
-        </motion.div>
+          <div className="sidebar-item">
+            <ApperIcon name="Clock" className="w-5 h-5 mr-3" />
+            <span>Pending</span>
+          </div>
+          <div className="sidebar-item">
+            <ApperIcon name="CheckCircle" className="w-5 h-5 mr-3" />
+            <span>Completed</span>
+          </div>
+        </nav>
 
-        {/* Welcome Section */}
-        <motion.div 
-          className="text-center mb-8 md:mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-surface-900 dark:text-white mb-3 md:mb-4">
-            Your Productivity
-            <span className="bg-gradient-to-r from-primary via-purple-500 to-primary-dark bg-clip-text text-transparent block sm:inline sm:ml-3">
-              Command Center
-            </span>
-          </h2>
-          <p className="text-surface-600 dark:text-surface-300 text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed">
-            Transform your tasks into achievements with our intelligent task management system designed for peak productivity.
-          </p>
-        </motion.div>
-
-        {/* Main Task Management Feature */}
-        <MainFeature 
-          tasks={tasks}
-          categories={categories}
-          onAddTask={addTask}
-          onUpdateTask={updateTask}
-          onDeleteTask={deleteTask}
-          onToggleStatus={toggleTaskStatus}
-        />
-
-        {/* Floating Action Hints */}
-        <motion.div 
-          className="fixed bottom-6 right-6 hidden lg:block"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 1 }}
-        >
-          <div className="bg-primary/10 backdrop-blur-sm rounded-2xl p-4 max-w-xs">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <ApperIcon name="Lightbulb" className="w-4 h-4 text-white" />
+        {/* Categories */}
+        <div className="p-4 border-t border-surface-200 dark:border-surface-700">
+          <h3 className="text-sm font-medium text-surface-500 dark:text-surface-400 mb-3 uppercase tracking-wider">Categories</h3>
+          <div className="space-y-2">
+            {categories.map(category => (
+              <div key={category.id} className="sidebar-item">
+                <ApperIcon name={category.icon} className="w-5 h-5 mr-3" style={{ color: category.color }} />
+                <span>{category.name}</span>
               </div>
-              <div>
-                <p className="text-sm font-medium text-surface-900 dark:text-white">
-                  Pro Tip
-                </p>
-                <p className="text-xs text-surface-600 dark:text-surface-400">
-                  Use keyboard shortcuts for faster task creation
-                </p>
-              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="p-4 border-t border-surface-200 dark:border-surface-700">
+          <h3 className="text-sm font-medium text-surface-500 dark:text-surface-400 mb-3 uppercase tracking-wider">Quick Stats</h3>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-surface-600 dark:text-surface-300">Total Tasks</span>
+              <span className="text-sm font-bold text-primary">{stats.total}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-surface-600 dark:text-surface-300">Completed</span>
+              <span className="text-sm font-bold text-secondary">{stats.completed}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-surface-600 dark:text-surface-300">Pending</span>
+              <span className="text-sm font-bold text-orange-500">{stats.pending}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-surface-600 dark:text-surface-300">Overdue</span>
+              <span className="text-sm font-bold text-red-500">{stats.overdue}</span>
             </div>
           </div>
-        </motion.div>
-      </main>
+        </div>
+      </motion.aside>
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col min-h-screen">
+        {/* Header */}
+        <header className="app-header h-16 flex items-center justify-between px-6 shadow-header">
+          <div className="flex items-center space-x-4">
+            <h2 className="text-xl font-semibold text-surface-900 dark:text-white">Dashboard</h2>
+          </div>
+          
+          <div className="flex items-center space-x-4">
+            {/* Dark Mode Toggle */}
+            <motion.button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-lg bg-surface-100 dark:bg-surface-700 hover:bg-surface-200 dark:hover:bg-surface-600 transition-colors duration-200"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <AnimatePresence mode="wait">
+                {darkMode ? (
+                  <motion.div
+                    key="sun"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ApperIcon name="Sun" className="w-5 h-5 text-yellow-500" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="moon"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ApperIcon name="Moon" className="w-5 h-5 text-surface-600" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          </div>
+        </header>
+
+        {/* Main Content Area */}
+        <main className="flex-1 app-main p-6">
+          <div className="max-w-7xl mx-auto">
+            {/* Page Title */}
+            <div className="mb-8">
+              <h1 className="text-2xl font-bold text-surface-900 dark:text-white mb-2">Task Management</h1>
+              <p className="text-surface-600 dark:text-surface-400">Organize and track your tasks efficiently</p>
+            </div>
+
+            {/* Main Task Management Feature */}
+            <MainFeature 
+              tasks={tasks}
+              categories={categories}
+              onAddTask={addTask}
+              onUpdateTask={updateTask}
+              onDeleteTask={deleteTask}
+              onToggleStatus={toggleTaskStatus}
+            />
+          </div>
+        </main>
+      </div>
     </div>
   )
 }
